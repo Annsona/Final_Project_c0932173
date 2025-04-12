@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${movie.title}">Movie Details</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1 th:text="${movie.title}">Movie Title</h1>
+
+<div class="movie-container">
+    <div class="movie-card" >
+
+            <img th:src="${movie.fullPosterUrl}" alt="Movie Poster" style="max-width: 100%; border-radius: 10px;">
+
+
+            <p><strong>Overview:</strong> <span th:text="${movie.overview}">Movie overview goes here.</span></p>
+            <p><strong>Release Date:</strong> <span th:text="${movie.releaseDate}">Release date</span></p>
+            <p><strong>Rating:</strong> <span th:text="${movie.voteAverage}">Rating</span></p>
+
+
+                <a th:if="${!favorite}" th:href="@{/addToFavorites/{id}(id=${movie.id})}">
+                    Add to Favorites ❤️
+                </a>
+
+                <a th:if="${favorite}" th:href="@{/removeFromFavorites/{id}(id=${movie.id})}">
+                    Remove from Favorites ❌
+                </a>
+            </div>
+</div>
+<br>
+<a th:href="@{/}">← Back to Home</a>
+</body>
+</html>

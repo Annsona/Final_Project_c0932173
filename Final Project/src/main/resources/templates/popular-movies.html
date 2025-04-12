@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Popular Movies</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Popular Movies</h1>
+<!-- Back to Home Page Link -->
+<a href="/">Back to Home</a>
+<!-- Display Popular Movies Dynamically -->
+<div class="movie-container">
+    <div th:each="movie : ${popularMovies}">
+        <div class="movie-card">
+            <img th:src="${movie.fullPosterUrl}" alt="Movie Poster">
+            <h2 th:text="${movie.title}"></h2>
+            <p th:text="${movie.overview}"></p>
+            <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>
+            <p>Rating: <span th:text="${movie.voteAverage}"></span></p>
+            <a th:href="@{/movie/{id}(id=${movie.id})}">View Details</a>
+            <!-- Add movie to favorites -->
+            <a th:href="@{/addToFavorites/{id}(id=${movie.id})}">Add to Favorite ❤️</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

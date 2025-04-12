@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Search Results</h1>
+
+<div class="movie-container">
+    <div th:each="movie : ${searchResults}">
+        <div class="movie-card">
+            <!-- Using the full poster image URL -->
+            <img th:src="${movie.fullPosterUrl}" alt="Movie Poster">
+            <h2 th:text="${movie.title}"></h2>
+            <p th:text="${movie.overview}"></p>
+            <p>Release Date: <span th:text="${movie.releaseDate}"></span></p>
+            <p>Rating: <span th:text="${movie.voteAverage}"></span></p>
+            <a th:href="@{/movie/{id}(id=${movie.id})}">View Details</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
